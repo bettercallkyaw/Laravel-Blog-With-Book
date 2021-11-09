@@ -10,6 +10,10 @@
       (ii)php artisan make:factory PostFactory
       (iii)php artisan make:seeder PostTableSeeder
 (7) - Authentication
+    (i)composer require laravel/ui
+    (ii)php artisan ui bootstrap --auth
+    (iii)npm install
+    (iv)npm run dev
 (8) – Master Template
 (9) – Form
 (10) - Relationship
