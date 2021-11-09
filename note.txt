@@ -2,6 +2,8 @@
 (2) – Routing
 (3) – Model – View - Controller
 (4) – Controller
+     (i)php artisan make:controller PostController -r
+     (ii)php artisan make:controller Product/ProductController -r
 (5) – View
 (6) – Migration and Model
 (7) - Authentication
