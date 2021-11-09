@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
- <meta charset="utf-8">
- <title>Post List</title>
-</head>
-<body>
+@extends('layouts.app')
 
- <h1>Post List</h1>
+@section('title', 'all posts')
 
- <ul>
-     {{-- <?php foreach($posts as $post): ?>
-    <li><?php echo $post['title']; ?></li>
-    <?php endforeach; ?> --}}
-    @foreach ($posts as $post)
-        <li>{{ $post['title']; }}</li>
-    @endforeach
- </ul>
-
-</body>
-</html>
+@section('content')
+    <div class="container">
+        @foreach ($posts as $post)
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <div class="card-subtitle mb-2 text-muted small">
+                        {{ $post->created_at->diffForHumans() }}
+                    </div>
+                    <p class="card-text">{{ $post->body }}</p>
+                    <a class="card-link" href="{{ url('/posts/show',$post->id) }}">
+                        View Detail &raquo;
+                    </a>
+                </div>
+            </div>
+        @endforeach
+        <br>
+        {{ $posts->links() }}
+    </div>
+@endsection

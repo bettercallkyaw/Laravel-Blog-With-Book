@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    protected $limited=5;
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +23,10 @@ class PostController extends Controller
         //     ['id'=>2,'title'=>'second post']
         // ];
 
-        $posts=Post::all();
-        return view('posts.index',[
-            'posts'=>$posts
-        ]);
+        //$posts=Post::all();
+
+        $posts=Post::latest()->simplePaginate($this->limited);
+        return view('posts.index',compact('posts'));
     }
 
     /**
@@ -57,7 +58,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return "Controller-Post Show - $id";
+        //return "Controller-Post Show - $id";
+        $post=Post::findOrFail($id);
+        return view('posts.show',compact('post'));
     }
 
     /**
