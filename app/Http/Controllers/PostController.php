@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,10 +17,12 @@ class PostController extends Controller
         //return 'Controller-Post List';
         //return view('posts/index');
 
-        $posts=[
-            ['id'=>1,'title'=>'first post'],
-            ['id'=>2,'title'=>'second post']
-        ];
+        // $posts=[
+        //     ['id'=>1,'title'=>'first post'],
+        //     ['id'=>2,'title'=>'second post']
+        // ];
+
+        $posts=Post::all();
         return view('posts.index',[
             'posts'=>$posts
         ]);

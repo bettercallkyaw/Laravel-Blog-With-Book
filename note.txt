@@ -6,6 +6,9 @@
      (ii)php artisan make:controller Product/ProductController -r
 (5) – View
 (6) – Migration and Model
+      (i)php artisan make:model Post -m
+      (ii)php artisan make:factory PostFactory
+      (iii)php artisan make:seeder PostTableSeeder
 (7) - Authentication
 (8) – Master Template
 (9) – Form
