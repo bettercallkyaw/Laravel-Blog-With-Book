@@ -1,0 +1,14 @@
+(1) – Laravel Project
+(2) – Routing
+(3) – Model – View - Controller
+(4) – Controller
+(5) – View
+(6) – Migration and Model
+(7) - Authentication
+(8) – Master Template
+(9) – Form
+(10) - Relationship
+(11) – Authorization
+(12) – Basic API
+(13) – Deployment
+(14) – What’s Next
