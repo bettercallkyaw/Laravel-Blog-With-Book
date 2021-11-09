@@ -13,7 +13,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'Controller-Post List';
+        //return 'Controller-Post List';
+        //return view('posts/index');
+
+        $posts=[
+            ['id'=>1,'title'=>'first post'],
+            ['id'=>2,'title'=>'second post']
+        ];
+        return view('posts.index',[
+            'posts'=>$posts
+        ]);
     }
 
     /**
