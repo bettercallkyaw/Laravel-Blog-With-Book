@@ -27,9 +27,12 @@ use App\Http\Controllers\PostController;
 //     return redirect()->route('posts.show');
 // });
 
-Route::get('/',[PostController::class,'index']);
+Route::get('/',[PostController::class,'index'])->name('all.posts');
 Route::get('/posts',[PostController::class,'index']);
 Route::get('/posts/show/{id}',[PostController::class,'show']);
+Route::get('/posts/create',[PostController::class,'create']);
+Route::post('/posts/create',[PostController::class,'store']);
+Route::get('/posts/delete/{id}',[PostController::class,'destroy']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

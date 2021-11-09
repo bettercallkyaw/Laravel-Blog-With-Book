@@ -36,7 +36,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories=[
+            ['id'=>1,'name'=>'Polite'],
+            ['id'=>2,'name'=>'Programming'],
+            ['id'=>3,'name'=>'Teach']
+        ];
+        return view('posts.create',compact('categories'));
     }
 
     /**
@@ -47,9 +52,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request,[
+            'title'=>'required|max:100',
+            'body'=>'required',
+            'category_id'=>'required'
+        ]);
 
+        $post=new Post();
+        $post->title=$request->title;
+        $post->body=$request->body;
+        $post->category_id=$request->category_id;
+        $post->save();
+        return redirect()->route('all.posts')->with('successMsg','post added successfully');
+    }
     /**
      * Display the specified resource.
      *
@@ -94,6 +109,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post=Post::findOrFail($id);
+        $post->delete();
+        return redirect()->route('all.posts')->with('successMsg','post deleted successfully');
+
     }
 }

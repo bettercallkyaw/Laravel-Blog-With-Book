@@ -3,7 +3,14 @@
 @section('title', 'all posts')
 
 @section('content')
+   
     <div class="container">
+        @if (Session::has('successMsg'))
+       <div class="alert alert-success">
+           {{ Session::get('successMsg') }}
+       </div>
+        @endif
+
         @foreach ($posts as $post)
             <div class="card mb-2">
                 <div class="card-body">

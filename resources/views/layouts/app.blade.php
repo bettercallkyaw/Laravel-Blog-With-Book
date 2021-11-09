@@ -38,7 +38,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link text-success"
-                            href="{{ url('/post/create') }}">
+                            href="{{ url('/posts/create') }}">
                             + Post Create
                             </a>
                         </li>
