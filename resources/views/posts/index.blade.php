@@ -18,7 +18,7 @@
                     <div class="card-subtitle mb-2 text-muted small">
                         {{ $post->created_at->diffForHumans() }}
                     </div>
-                    <p class="card-text">{{ $post->body }}</p>
+                    <p class="card-text">{{ Str::substr($post->body, 0, 90) }}</p>
                     <a class="card-link" href="{{ url('/posts/show',$post->id) }}">
                         View Detail &raquo;
                     </a>

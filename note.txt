@@ -17,6 +17,12 @@
 (8) – Master Template
 (9) – Form
 (10) - Relationship
+       (i)php artisan make:model Category -m
+       (ii)php artisan make:model Comment -m
+       (iii)php artisan migrate:fresh
+       (iv)php artisan make:factory CategoryFactory --model=Category
+       (v)php artisan make:factory CommentFactory --model=Comment
+       (vi)php artisan db:seed
 (11) – Authorization
 (12) – Basic API
 (13) – Deployment
