@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -12,6 +13,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -43,6 +49,7 @@ class CommentController extends Controller
         $comment=new Comment();
         $comment->post_id=$request->post_id;
         $comment->content=$request->content;
+        $comment->user_id=auth()->user()->id;
         $comment->save();
         return back()->with('successMsg','comments added successfully');
     }
@@ -90,7 +97,24 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment=Comment::findOrFail($id);
-        $comment->delete();
-        return back()->with('status','comment deleted successfully');
+        if( Gate::allows('comment-delete', $comment) ) {
+            $comment->delete();
+            return back()->with('status','comment deleted successfully');
+            } else {
+            return back()->with('error', 'Unauthorize');
+            }
+
+        // $comment->delete();
+        // return back()->with('status','comment deleted successfully');
     }
+
+    // public function delete($id)
+    // {
+    //     $comment = Comment::find($id);
+    //     if(Gate::denies('comment-delete', $comment)) {
+    //     return back()->with('error', 'Unauthorize'); 
+    // }
+    //     $comment->delete();
+    //     return back();
+    // }
 }

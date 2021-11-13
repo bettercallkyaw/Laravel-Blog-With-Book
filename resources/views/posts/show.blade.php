@@ -26,6 +26,13 @@
               {{ Session::get('status') }}
             </div>
         @endif
+
+        @if (Session::has('error'))
+            <div class="alert alert-warning">
+              {{ Session::get('error') }}
+            </div>
+        @endif
+
         <ul class="list-group">
             <li class="list-group-item active">
                 <b>Comments ({{ count($post->comments) }})</b>
@@ -36,6 +43,10 @@
                     <a href="{{ url("/comments/delete/$comment->id") }}" class="close">
                         &times;
                     </a>
+                    <div class="small mt-2">
+                        By <b>{{ $comment->user->name }}</b>,
+                        {{ $comment->created_at->diffForHumans() }}
+                        </div>
                 </li>
             @endforeach
         </ul>
@@ -48,6 +59,7 @@
             </div>
         @endif
 
+        @auth
         <form action="{{ url('/comments/store') }}" method="post">
             @csrf
             <input type="hidden" name="post_id" value="{{ $post->id }}">
@@ -59,6 +71,8 @@
         @enderror
             <input type="submit" value="Add Comment" class="btn btn-secondary">
         </form>
+        @endauth
+
     </div>
 @endsection
 

@@ -37,10 +37,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-success"
-                            href="{{ url('/posts/create') }}">
-                            + Post Create
-                            </a>
+                            @auth
+                                <a class="nav-link text-success"
+                                href="{{ url('/posts/create') }}">
+                                + Post Create
+                                </a>
+                            @endauth
                         </li>
                     </ul>
 
